@@ -1,0 +1,35 @@
+/* https://github.com/uikit/uikit/issues/2295 */
+
+.uk-progress.green::-ms-fill {
+    background-color: #06D6A0;
+}
+.uk-progress.green::-moz-progress-bar {
+    background-color: #06D6A0;
+}
+.uk-progress.green::-webkit-progress-value {
+    background-color: #06D6A0;
+}
+
+.uk-progress.yellow::-ms-fill {
+    background-color: #F1ED77;
+}
+.uk-progress.yellow::-moz-progress-bar {
+    background-color: #F1ED77;
+}
+.uk-progress.yellow::-webkit-progress-value {
+    background-color: #F1ED77;
+}
+
+.uk-progress.red::-ms-fill {
+    background-color: #EF476F;
+}
+.uk-progress.red::-moz-progress-bar {
+    background-color: #EF476F;
+}
+.uk-progress.red::-webkit-progress-value {
+    background-color: #EF476F;
+}
+
+.sticky-stuff {
+    z-index: 980;
+}

@@ -1,0 +1,12 @@
+.grid-cell {
+    border: 0.5px solid #fff;    
+    cursor: pointer;
+    color: #f8f8f8;
+    font-size: 1.5em;
+}
+
+.grid-cell.active div {
+    background-color: #BFE2FC;
+    color: black;
+}
+

@@ -1,0 +1,34 @@
+<progress-countdown ng-if="vm.shouldStartTimer" max="vm.maxValue" on-timer-end="vm.endTimer()">
+</progress-countdown>
+
+<cover ng-if="vm.showCover" on-close-click="vm.hideCover()">
+    <div ng-if="!vm.gameWon">
+        <h1>Game over, mate :( </h1>
+        <a ui-sref="options" class="uk-button uk-button-large uk-button-danger">
+            Retry?    
+        </a>
+    </div>
+    <div ng-if="vm.gameWon">
+        <h1>That was a good game :) </h1>
+        <a ui-sref="options" class="uk-button uk-button-large uk-button-primary">
+            Play again?    
+        </a>
+    </div>
+</cover>
+
+<div class="uk-flex uk-flex-center uk-flex-middle full-page-cover">
+    <div ng-class="[ 
+                    'uk-grid-collapse uk-text-center uk-animation-slide-right-medium',
+                    {
+                        'easy': 'uk-width-medium uk-child-width-1-2',
+                        'medium': 'uk-width-large uk-child-width-1-4',
+                        'hard': 'uk-width-xlarge uk-child-width-1-6',
+                    }[ vm.$stateParams.difficulty ]
+                  ]" uk-grid>
+        <div ng-class="['grid-cell', {'active' : gridCell.active}]" ng-click="vm.makeMove($index)" ng-repeat="gridCell in vm.gridCells track by $index">
+            <div ng-class="['uk-background-muted', 'uk-padding', {'active' : gridCell.active}]">
+                <span>{{gridCell.icon}}</span>
+            </div>
+        </div>
+    </div>
+</div>

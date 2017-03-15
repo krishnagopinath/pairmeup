@@ -1,0 +1,17 @@
+<div 
+    class="uk-card uk-card-default uk-card-body uk-animation-slide-top sticky-stuff" 
+    uk-sticky="bottom: #offset">
+    <progress 
+            id="progressbar" 
+            ng-class="[
+                'uk-progress',
+                {
+                    'green': (vm.max/2) <= vm.currentValue,
+                    'yellow': ( ((vm.max/2) >= vm.currentValue) && ((vm.max/4) <= vm.currentValue) ),
+                    'red': (vm.max/4) >= vm.currentValue
+                }
+            ]" 
+            value="{{ vm.currentValue }}" 
+            max="{{ vm.max }}">
+    </progress>
+</div>

@@ -1,0 +1,18 @@
+<div class="uk-flex uk-flex-center uk-flex-middle full-page-cover">
+    <div class="uk-flex uk-flex-column  uk-flex-middle uk-animation-slide-right-medium" uk-grid>
+        <div>
+            <h1>How difficult do you want this to be?</h1>
+        </div>
+        <div class="uk-grid-medium uk-grid-collapse uk-flex-row" uk-grid>
+            <difficulty-button level="'easy'" on-level-chosen="vm.chooseDifficulty(level)">
+                I'm just here for fun!
+            </difficulty-button>
+            <difficulty-button level="'medium'" on-level-chosen="vm.chooseDifficulty(level)">
+                I can handle some fire power.
+            </difficulty-button>
+            <difficulty-button level="'hard'" on-level-chosen="vm.chooseDifficulty(level)">
+                Bring it ON!
+            </difficulty-button>
+        </div>
+    </div>
+</div>
