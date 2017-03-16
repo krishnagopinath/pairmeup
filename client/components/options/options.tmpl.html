@@ -1,18 +1,44 @@
 <div class="uk-flex uk-flex-center uk-flex-middle full-page-cover">
-    <div class="uk-flex uk-flex-column  uk-flex-middle uk-animation-slide-right-medium" uk-grid>
-        <div>
-            <h1>How difficult do you want this to be?</h1>
+    <div class="uk-flex uk-flex-column">
+        <div class="uk-flex uk-flex-column uk-animation-slide-right-medium uk-margin-bottom" uk-grid>
+            <div>
+                <h1>How difficult do you want this to be?</h1>
+            </div>
+            <div class="uk-grid-medium uk-grid-collapse uk-flex-row" uk-grid>
+                <difficulty-button level="'easy'" on-level-chosen="vm.chooseDifficulty(level)">
+                    I'm just here for fun!
+                </difficulty-button>
+                <difficulty-button level="'medium'" on-level-chosen="vm.chooseDifficulty(level)">
+                    I can handle some fire power.
+                </difficulty-button>
+                <difficulty-button level="'hard'" on-level-chosen="vm.chooseDifficulty(level)">
+                    Bring it ON!
+                </difficulty-button>
+            </div>
         </div>
-        <div class="uk-grid-medium uk-grid-collapse uk-flex-row" uk-grid>
-            <difficulty-button level="'easy'" on-level-chosen="vm.chooseDifficulty(level)">
-                I'm just here for fun!
-            </difficulty-button>
-            <difficulty-button level="'medium'" on-level-chosen="vm.chooseDifficulty(level)">
-                I can handle some fire power.
-            </difficulty-button>
-            <difficulty-button level="'hard'" on-level-chosen="vm.chooseDifficulty(level)">
-                Bring it ON!
-            </difficulty-button>
+
+        <div class="uk-flex uk-flex-column uk-animation-slide-right-medium" uk-grid>
+            <div>
+                <h1>Pick a theme</h1>
+            </div>
+            <div class="uk-grid-medium uk-grid-collapse uk-flex-row uk-child-width-expand" uk-grid>
+                <ul class="uk-list uk-list-large">
+                    <li class="uk-margin-remove-top" ng-repeat="theme in vm.themes track by $index">
+                        <a class="uk-button uk-button-text uk-width-1-1" href="" ng-click="vm.chooseTheme(theme.name)">
+                            <article class="uk-comment uk-comment-primary uk-visible-toggle theme-item">
+                                <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                                    <div class="uk-width-auto">
+                                        <img class="uk-comment-avatar" ng-src="{{theme.icon}}" width="80" height="80" alt="">
+                                    </div>
+                                    <div class="uk-width-expand">
+                                        <h4 class="uk-comment-title uk-margin-remove uk-align-left">{{theme.name}}</h4>
+                                    </div>
+                                </div>
+                            </article>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

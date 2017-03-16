@@ -11,16 +11,32 @@ class OptionsController {
         this.ThemesModel = ThemesModel;
         this.$window = $window;
         this.$state = $state;
+
+        this.difficulty = null;
+        this.theme = null;
     }
 
     $onInit() {
         // get available themes
-        this.ThemesModel.getThemes().then(response => console.log(response));
+        this.ThemesModel.getThemes().then(response => this.themes = response.data);
+    }
+
+    moveToGame() {
+        const {difficulty, theme, $state} = this;
+
+        if(theme && difficulty) $state.go('game', { difficulty, theme });
     }
 
     chooseDifficulty(level) {
-        this.$state.go('game', { difficulty: level });
+        this.difficulty = level;
+        this.moveToGame();
     }
+
+    chooseTheme(theme) {
+        this.theme = theme;
+        this.moveToGame();
+    }
+
 }
 
 const OptionsModule = angular.module('options', [DifficultyButtonModule.name])

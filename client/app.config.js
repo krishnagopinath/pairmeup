@@ -31,7 +31,7 @@ const config = (($urlRouterProvider, $stateProvider) => {
     $stateProvider.state({
         name: 'game',
         parent: 'app',
-        url: '/game/?difficulty',
+        url: '/game/?difficulty&theme',
         component: 'game'
     });
 
