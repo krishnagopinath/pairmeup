@@ -23,6 +23,7 @@ module.exports = {
             { test: /\.html$/, loader: 'html-loader' },
             { test: /\.js$/, exclude: /(node_modules|bower_components)/, use: ['ng-annotate-loader', 'babel-loader'] },
             { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+            { test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/, use: "file-loader" }
         ]
     },
     plugins: [

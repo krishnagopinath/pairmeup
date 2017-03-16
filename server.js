@@ -1,5 +1,3 @@
-// server.js takes care of setting up the environment and passes the router object to the API
-
 const express = require('express');
 
 const app = express();

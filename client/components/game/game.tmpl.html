@@ -16,7 +16,7 @@
     </div>
 </cover>
 
-<div class="uk-flex uk-flex-center uk-flex-middle full-page-cover">
+<!-- <div class="uk-flex uk-flex-center uk-flex-middle full-page-cover">
     <div ng-class="[ 
                     'uk-grid-collapse uk-text-center uk-animation-slide-right-medium',
                     {
@@ -26,8 +26,27 @@
                     }[ vm.$stateParams.difficulty ]
                   ]" uk-grid>
         <div ng-class="['grid-cell', {'active' : gridCell.active}]" ng-click="vm.makeMove($index)" ng-repeat="gridCell in vm.gridCells track by $index">
-            <div ng-class="['uk-background-muted', 'uk-padding', {'active' : gridCell.active}]">
-                <span>{{gridCell.icon}}</span>
+            <div ng-class="['uk-background-muted', {'active' : gridCell.active}]">
+                <div class="uk-width-small">
+                    <img class="uk-comment-avatar" ng-src="/themes/{{vm.$stateParams.theme}}/{{gridCell.icon}}" width="80" height="80" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<div class="uk-flex uk-flex-center uk-flex-middle full-page-cover">
+    <div ng-class="[
+                    'uk-grid-small uk-text-center uk-grid-match', 
+                    {
+                        'easy': 'uk-width-medium uk-child-width-1-2',
+                        'medium': 'uk-width-large uk-child-width-1-4',
+                        'hard': 'uk-width-xlarge uk-child-width-1-6',
+                    }[ vm.$stateParams.difficulty ]
+                  ]" uk-grid>
+        <div ng-repeat="gridCell in vm.gridCells track by $index">
+            <div class="uk-tile uk-tile-muted uk-padding-remove">
+                <img class="uk-comment-avatar" ng-src="/themes/{{vm.$stateParams.theme}}/{{gridCell.icon}}" width="80" height="80" alt="">
             </div>
         </div>
     </div>

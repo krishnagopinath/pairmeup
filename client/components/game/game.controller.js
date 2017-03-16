@@ -1,13 +1,15 @@
 import { icons, difficultyMap } from './game.constants.js';
 
 export default class GameController {
-    constructor($timeout, $window, $interval, $stateParams) {
+    constructor($timeout, $window, $interval, $stateParams, ThemesModel) {
         'ngInject';
 
         this.$timeout = $timeout;
         this.$window = $window;
         this.$stateParams = $stateParams;
         this.$interval = $interval;
+
+        this.ThemesModel = ThemesModel;
 
         this.activeIndices = [];
         this.completedIndices = [];
@@ -30,18 +32,28 @@ export default class GameController {
         // functions first
         const { resetGame, computeGridCells, showCells, startTimer } = this;
         // `$` next
-        const { $timeout, $stateParams } = this;        
+        const { $timeout, $stateParams } = this;
+
+        // from $stateParams
+        const { difficulty, theme } = $stateParams;
 
         // from the previous state `options`
-        const { uniquePairs, timerMaxValue, gridOpenTime } = difficultyMap[$stateParams.difficulty];
-
-        // generate the cells the comprise the grid shown in the UI
-        this.gridCells = computeGridCells(icons, uniquePairs);
-
-        // show the cells for a bit, then start the progress ticker
-        showCells(resetGame, gridOpenTime).then(startTimer);
+        const { uniquePairs, timerMaxValue, gridOpenTime } = difficultyMap[difficulty];
 
         this.maxValue = timerMaxValue;
+
+        this.ThemesModel.getShuffledThemeItems(theme, uniquePairs)
+            // generate the cells the comprise the grid shown in the UI
+            .then(({ data }) => {
+
+                this.gridCells = computeGridCells(data);
+
+                console.log(this.gridCells);
+                // then start the progress ticker
+                showCells(resetGame, gridOpenTime).then(startTimer);
+            });
+
+
     }
 
     $onDestroy() {
@@ -92,15 +104,17 @@ export default class GameController {
         console.log('ACTIVE => ', activeIndices, '\nCOMPLETED =>', completedIndices);
     }
 
-    computeGridCells(icons, uniquePairs) {
-        const shuffled = icons.sort(() => .5 - Math.random());
-        const gridCells = [...shuffled.slice(0, uniquePairs), ...shuffled.slice(0, uniquePairs)];
+    computeGridCells(icons) {
 
-        return gridCells.sort(() => 0.5 - Math.random()).map(icon => ({ icon, active: true }));
+        const shuffledThemeItems = [...icons, ...icons]
+            .sort(() => 0.5 - Math.random())
+            .map(icon => Object.assign({}, icon, { active: true }));
+
+        return shuffledThemeItems;
     }
 
     checkIfGameComplete() {
-        if(this.completedIndices.length === this.gridCells.length) {
+        if (this.completedIndices.length === this.gridCells.length) {
             this.showCover = true;
             this.gameWon = true;
             this.shouldStartTimer = false;
