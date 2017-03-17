@@ -5,11 +5,6 @@ export default class {
         this.$http = $http;
     }
 
-    getThemes() {
-        return this.$http.get('/api/themes');
-    }
-
-    getShuffledThemeItems(theme, levelSeed) {
-        return this.$http.get(`/api/themes/${theme}/${levelSeed}`);
-    }
+    getThemes = () => this.$http.get('/api/themes');
+    getShuffledThemeItems = (theme, levelSeed) => this.$http.get(`/api/themes/${theme}/${levelSeed}`);
 }

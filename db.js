@@ -1,10 +1,7 @@
 // dumpyard of toxic waste!
 
 module.exports = {
-    themes: [
-        { 'name': 'pokemon', 'icon': 'http://www.pngmart.com/files/2/Pikachu-PNG-File.png' },
-        { 'name': 'javascript', 'icon': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/480px-JavaScript-logo.png' }
-    ],
+    themes: [ 'pokemon', 'javascript'],
     themesInfo: {
         'pokemon': [
             {

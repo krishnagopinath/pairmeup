@@ -5,8 +5,7 @@
     font-size: 1.5em;
 }
 
-.grid-cell.active div {
-    background-color: #BFE2FC;
-    color: black;
+.grid-cell.hidden div {
+    opacity: 0;
 }
 

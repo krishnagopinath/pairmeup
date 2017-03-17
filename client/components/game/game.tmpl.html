@@ -1,14 +1,14 @@
-<progress-countdown ng-if="vm.shouldStartTimer" max="vm.maxValue" on-timer-end="vm.endTimer()">
+<progress-countdown ng-if="vm.flags.countdown && !vm.flags.gameFinished" max="vm.countdownValue" on-timer-end="vm.endTimer()">
 </progress-countdown>
 
-<cover ng-if="vm.showCover" on-close-click="vm.hideCover()">
-    <div ng-if="!vm.gameWon">
+<cover ng-if="vm.flags.gameFinished">
+    <div ng-if="!vm.flags.countdown">
         <h1>Game over, mate :( </h1>
         <a ui-sref="options" class="uk-button uk-button-large uk-button-danger">
             Retry?    
         </a>
     </div>
-    <div ng-if="vm.gameWon">
+    <div ng-if="vm.flags.countdown">
         <h1>That was a good game :) </h1>
         <a ui-sref="options" class="uk-button uk-button-large uk-button-primary">
             Play again?    
@@ -16,37 +16,18 @@
     </div>
 </cover>
 
-<!-- <div class="uk-flex uk-flex-center uk-flex-middle full-page-cover">
-    <div ng-class="[ 
-                    'uk-grid-collapse uk-text-center uk-animation-slide-right-medium',
-                    {
-                        'easy': 'uk-width-medium uk-child-width-1-2',
-                        'medium': 'uk-width-large uk-child-width-1-4',
-                        'hard': 'uk-width-xlarge uk-child-width-1-6',
-                    }[ vm.$stateParams.difficulty ]
-                  ]" uk-grid>
-        <div ng-class="['grid-cell', {'active' : gridCell.active}]" ng-click="vm.makeMove($index)" ng-repeat="gridCell in vm.gridCells track by $index">
-            <div ng-class="['uk-background-muted', {'active' : gridCell.active}]">
-                <div class="uk-width-small">
-                    <img class="uk-comment-avatar" ng-src="/themes/{{vm.$stateParams.theme}}/{{gridCell.icon}}" width="80" height="80" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-
 <div class="uk-flex uk-flex-center uk-flex-middle full-page-cover">
     <div ng-class="[
-                    'uk-grid-small uk-text-center uk-grid-match', 
-                    {
-                        'easy': 'uk-width-medium uk-child-width-1-2',
-                        'medium': 'uk-width-large uk-child-width-1-4',
-                        'hard': 'uk-width-xlarge uk-child-width-1-6',
-                    }[ vm.$stateParams.difficulty ]
+                    'uk-grid-small uk-text-center uk-grid-match uk-animation-slide-right-medium', 
+                    { 'easy': 'uk-width-medium uk-child-width-1-2', 'medium': 'uk-width-large uk-child-width-1-4', 'hard': 'uk-width-xlarge uk-child-width-1-6' }[ vm.difficultyMap.difficulty ]
                   ]" uk-grid>
-        <div ng-repeat="gridCell in vm.gridCells track by $index">
-            <div class="uk-tile uk-tile-muted uk-padding-remove">
-                <img class="uk-comment-avatar" ng-src="/themes/{{vm.$stateParams.theme}}/{{gridCell.icon}}" width="80" height="80" alt="">
+        <div ng-repeat="themeItem in vm.themeItems track by $index" ng-click="vm.makeMove($index)">
+            <div ng-if="themeItem.active" class="uk-tile uk-tile-muted uk-padding-remove uk-box-shadow-small uk-animation-scale-up">
+                <img class="uk-comment-avatar" ng-src="/assets/themes/{{vm.theme}}/{{themeItem.icon}}" width="80" height="80" alt="">
+            </div>
+            <div ng-if="!themeItem.active" class="uk-tile uk-tile-muted uk-padding-remove uk-box-shadow-small">
+                <img class="uk-comment-avatar" ng-src="/assets/gridcard.png" width="80" height="80"
+                    alt="">
             </div>
         </div>
     </div>

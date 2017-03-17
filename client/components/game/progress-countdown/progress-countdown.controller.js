@@ -6,10 +6,9 @@ export default class {
         "ngInject";
 
         this.$interval = $interval;
-        this.startTimer = this.startTimer.bind(this);
     }
 
-    startTimer() {
+    startTimer = () => {
         if (this.currentValue && this.timer) {
             this.currentValue -= 1;
             if (min >= this.currentValue) {

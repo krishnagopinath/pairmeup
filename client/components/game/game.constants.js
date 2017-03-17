@@ -3,7 +3,7 @@ export const difficultyMap = {
         seed: 2,
         uniquePairs: 2,
         gridOpenTime: 3000,
-        timerMaxValue: 120 
+        timerMaxValue: 60 
     },
     'medium': {
         seed: 4,
