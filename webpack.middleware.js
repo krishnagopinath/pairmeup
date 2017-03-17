@@ -4,9 +4,9 @@ const webpackHotMiddleware = require("webpack-hot-middleware");
 const webpackConfig = require("./webpack.dev.config");
 
 module.exports = (app) => {
-    
+
     const compiledWebpack = webpack(webpackConfig);
-    
+
     app.use(webpackDevMiddleware(compiledWebpack, {
         publicPath: webpackConfig.output.publicPath,
         stats: {

@@ -5,10 +5,16 @@ const apiRouter = express.Router();
 
 process.env.PORT = process.env.PORT || 5000;
 
+let staticAssets = null;
+
 // start webpack-dev-server
 if(process.env.NODE_ENV !== 'production') {
     // add some patchwork for the devserver to start!
-    require('./webpack/webpack.middleware')(app);
+    require('./webpack.middleware')(app);
+    staticAssets = express.static(__dirname + '/client');
+} else if(process.env.NODE_ENV === 'production') {
+    // serve static assets from the dist folder!
+    staticAssets = express.static(__dirname + '/dist')
 }
 
 // Attach body parser middleware to parse request body
@@ -21,7 +27,7 @@ require('./api/index')(apiRouter);
 app.use('/api', apiRouter);
 
 // start the server
-app.use(express.static(__dirname + '/client'));
+app.use(staticAssets);
 
 app.listen(process.env.PORT, function(){
   console.log(`Running on port ${process.env.PORT}`);

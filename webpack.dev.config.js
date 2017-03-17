@@ -2,14 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const ROOT_DIR = path.dirname(require.main.filename)
-const APP_DIR = path.resolve(ROOT_DIR, 'client');
-const DIST_DIR = path.resolve(ROOT_DIR, 'dist');
+const APP_DIR = path.resolve(__dirname, 'client');
+const DIST_DIR = path.resolve(__dirname, 'dist');
 
 module.exports = {
+    context: APP_DIR,
     entry: [
         'webpack-hot-middleware/client?reload=true',
-        APP_DIR + '/app.js'
+        './app.js'
     ],
     output: {
         publicPath: '/',
@@ -29,7 +29,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new HtmlWebpackPlugin({
-            template: ROOT_DIR + '/index.html'
+            template: path.resolve(__dirname, 'index.html')
         })
     ]
 };

@@ -2,9 +2,6 @@ import {
     icons,
     difficultyMap
 } from './game.constants.js';
-import {
-    findIndex
-} from 'lodash';
 
 export default class GameController {
 
@@ -23,7 +20,8 @@ export default class GameController {
         this.ThemesModel = ThemesModel;
 
         // the general stuff
-        this.difficultyMap = { ...difficultyMap[difficulty],
+        this.difficultyMap = {
+            ...difficultyMap[difficulty],
             difficulty
         };
         this.theme = theme;
@@ -75,11 +73,11 @@ export default class GameController {
     }
 
     verifyMove = (index1, index2) => {
-        return function() {
+        return function () {
             // some side effecty stuff :(
             this.flags.verifyingMove = true;
             return this.themeItems[index1].id === this.themeItems[index2].id;
-        } 
+        }
     }
 
     finishMove = (indices) => {
@@ -95,7 +93,7 @@ export default class GameController {
             indices.active = [];
 
             this.flags.verifyingMove = false;
-            
+
             return indices;
         }
     }
@@ -105,7 +103,7 @@ export default class GameController {
     }
 
     finishGame = (gameFinished) => {
-        if(gameFinished) {            
+        if (gameFinished) {
             this.flags.gameFinished = true;
         }
     }
@@ -119,16 +117,16 @@ export default class GameController {
     moveAllowed = (currentIndex) => {
         const { flags: { verifyingMove, countdown }, indices: { active, complete } } = this;
 
-        return  !verifyingMove && 
-                !active.includes(currentIndex) && 
-                !complete.includes(currentIndex) && 
-                (active.length < 2) && 
-                countdown;
+        return !verifyingMove &&
+            !active.includes(currentIndex) &&
+            !complete.includes(currentIndex) &&
+            (active.length < 2) &&
+            countdown;
     }
 
     makeMove = (currentIndex) => {
 
-        if(this.moveAllowed(currentIndex)) {
+        if (this.moveAllowed(currentIndex)) {
             const {
                 themeItems,
                 verifyMove,
@@ -171,8 +169,8 @@ export default class GameController {
         const {
             difficultyMap: {
                 difficulty,
-                uniquePairs,
-                timerMaxValue
+            uniquePairs,
+            timerMaxValue
             },
             theme
         } = this;

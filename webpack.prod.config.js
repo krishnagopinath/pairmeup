@@ -1,15 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const ROOT_DIR = path.dirname(require.main.filename)
-const APP_DIR = path.resolve(ROOT_DIR, 'client');
-const DIST_DIR = path.resolve(ROOT_DIR, 'dist');
+const APP_DIR = path.resolve(__dirname, 'client');
+const DIST_DIR = path.resolve(__dirname, 'dist');
 
 module.exports = {
-    entry: [
-        APP_DIR + '/app.js'
-    ],
+    context: APP_DIR,
+    entry: './app.js',
     output: {
         publicPath: '/',
         path: DIST_DIR,
@@ -27,8 +26,14 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(APP_DIR, 'assets'),
+                to: path.resolve(DIST_DIR, 'assets')
+            }
+        ]),
         new HtmlWebpackPlugin({
-            template: './index.html'
+            template: path.resolve(__dirname, 'index.html')
         })
     ]
 };
