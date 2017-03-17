@@ -7,7 +7,7 @@
     "clean": "rimraf dist/*",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "build": "npm run clean && webpack --config ./webpack/webpack.config.js --env production"
+    "build": "npm run clean && webpack --display-error-details --config webpack/webpack.prod.config.js --env production"
   },
   "author": "hpkrishna07@gmail.com",
   "license": "ISC",

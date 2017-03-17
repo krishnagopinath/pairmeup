@@ -1,7 +1,13 @@
 // dumpyard of toxic waste!
 
 module.exports = {
-    themes: [ 'pokemon', 'javascript'],
+    themes: [{
+        name: 'pokemon',
+        description: "Fuzzy loveable creatures. What's not to like?"
+    }, {
+        name: 'javascript',
+        description: "Two words. JS Fatigue."
+    }],
     themesInfo: {
         'pokemon': [
             {
