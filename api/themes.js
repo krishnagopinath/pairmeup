@@ -8,6 +8,7 @@ const getThemeItems = (req, res) => {
     const {theme, levelSeed} = req.params;
     const themeData = [...themesInfo[theme]]; 
 
+    // O(n) shuffling routine
     const max = themeData.length;
     for(let i = 0; i< levelSeed; i++) {
         let currentItem = themeData[i]; 

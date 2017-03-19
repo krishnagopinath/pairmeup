@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Fri Mar 17 2017 13:33:14 GMT-0400 (EDT)
 
-const webpackConfig = require('./webpack/webpack.dev.config');
+const webpackConfig = require('./webpack.dev.config');
 
 module.exports = function (config) {
   config.set({
@@ -25,7 +25,7 @@ module.exports = function (config) {
 
     plugins: [
       require("karma-jasmine"),
-      require("karma-phantomjs-launcher"),
+      require("karma-chrome-launcher"),
       require("karma-spec-reporter"),
       require("karma-sourcemap-loader"),
       require("karma-webpack")
@@ -39,7 +39,7 @@ module.exports = function (config) {
     webpackServer: {
       noInfo: true
     },
-
+    
     // list of files to exclude
     exclude: [
     ],
@@ -70,7 +70,7 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode
