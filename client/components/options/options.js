@@ -14,6 +14,8 @@ class OptionsController {
 
         this.difficulty = null;
         this.theme = null;
+
+        this.difficultyChosen = false;
     }
 
     $onInit() {
@@ -29,6 +31,7 @@ class OptionsController {
 
     chooseDifficulty(level) {
         this.difficulty = level;
+        this.difficultyChosen = true;
         this.moveToGame();
     }
 

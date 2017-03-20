@@ -9,6 +9,7 @@ let staticAssets = null;
 
 // start webpack-dev-server
 if(process.env.NODE_ENV !== 'production') {
+    console.log('starting webpack-dev-server..');
     // add some patchwork for the devserver to start!
     require('./webpack.middleware')(app);
     staticAssets = express.static(__dirname + '/client');

@@ -17,27 +17,29 @@
             </div>
         </div>
 
-        <div class="uk-flex uk-flex-column uk-animation-slide-right-medium" uk-grid>
+        <div ng-if="vm.difficultyChosen" class="uk-flex uk-flex-column uk-animation-slide-top-small" uk-grid>
             <div>
-                <h1>Pick a theme</h1>
-            </div>
-            <div class="uk-grid-medium uk-grid-collapse uk-flex-row uk-child-width-expand" uk-grid>
-                <ul class="uk-list uk-list-large">
-                    <li class="uk-margin-remove-top" ng-repeat="theme in vm.themes track by $index">
-                        <a class="uk-button uk-button-text uk-width-1-1" href="" ng-click="vm.chooseTheme(theme.name)">
-                            <article class="uk-comment uk-comment-primary uk-visible-toggle theme-item">
-                                <div class="uk-grid-medium uk-flex-middle" uk-grid>
-                                    <div class="uk-width-auto">
-                                        <img class="uk-comment-avatar" ng-src="/assets/{{theme.name}}.png" width="80" height="80" alt="">
+                <div>
+                    <h1>Pick a theme</h1>
+                </div>
+                <div class="uk-grid-medium uk-grid-collapse uk-flex-row uk-child-width-expand" uk-grid>
+                    <ul class="uk-list uk-list-large">
+                        <li class="uk-margin-remove-top" ng-repeat="theme in vm.themes track by $index">
+                            <a class="uk-button uk-button-text uk-width-1-1" href="" ng-click="vm.chooseTheme(theme.name)">
+                                <article class="uk-comment uk-comment-primary uk-visible-toggle theme-item">
+                                    <div class="uk-grid-medium uk-flex-middle" uk-grid>
+                                        <div class="uk-width-auto">
+                                            <img class="uk-comment-avatar" ng-src="/assets/{{theme.name}}.png" width="80" height="80" alt="">
+                                        </div>
+                                        <div class="uk-width-expand">
+                                            <h4 class="uk-comment-title uk-margin-remove uk-align-left">{{theme.name}} </h4>
+                                        </div>
                                     </div>
-                                    <div class="uk-width-expand">
-                                        <h4 class="uk-comment-title uk-margin-remove uk-align-left">{{theme.name}} </h4>
-                                    </div>
-                                </div>
-                            </article>
-                        </a>
-                    </li>
-                </ul>
+                                </article>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@
     "clean": "rimraf dist/*",
     "test": "karma start",
     "dev": "node server.js",
-    "start": "NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production PORT=8080 node server.js",
     "build": "NODE_ENV=production npm run clean && webpack -p --display-error-details --config ./webpack.prod.config.js --env production"
   },
   "engines": {
