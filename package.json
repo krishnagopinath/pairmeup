@@ -6,8 +6,12 @@
   "scripts": {
     "clean": "rimraf dist/*",
     "test": "karma start",
-    "start": "node server.js",
+    "dev": "node server.js",
+    "start": "NODE_ENV=production node server.js",
     "build": "NODE_ENV=production npm run clean && webpack -p --display-error-details --config ./webpack.prod.config.js --env production"
+  },
+  "engines": {
+    "node": "7.7.3"
   },
   "author": "hpkrishna07@gmail.com",
   "license": "ISC",

@@ -41,15 +41,15 @@ export default class GameController {
 
     computeThemeCells = (themeItems) => {
         // spread them out.. we need pairs of items
-        const shuffledThemeItems = [...themeItems, ...themeItems]
-            // shuffle
+        const shuffledThemeItems = [...themeItems, ...themeItems]        
+             // shuffle
             .sort(() => 0.5 - Math.random())
             // add an `active` flag, shows out the grid
             .map(icon => Object.assign({}, icon, {
                 active: true
             }));
 
-        return shuffledThemeItems;
+        return shuffledThemeItems; 
     }
 
     bindToView = (shuffledThemeItems) => {
